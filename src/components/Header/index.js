@@ -8,7 +8,7 @@ const Header = () => {
       <Link className="logo" to="/">
         Jeje Flix
       </Link>
-      <Link className="favorite" to="/">
+      <Link className="favorite" to="/favoritos">
         My Movies
       </Link>
     </header>

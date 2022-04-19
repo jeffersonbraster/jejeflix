@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import api from "../../services/api";
 import "./style.css";
 
 const Movie = () => {
   const { id } = useParams();
+  const navigation = useNavigate();
+
   const [movie, setMovie] = useState({});
   const [loading, setLoading] = useState(true);
 
@@ -22,7 +24,8 @@ const Movie = () => {
           setLoading(false);
         })
         .catch(() => {
-          console.log("n encontrado");
+          navigation("/", { replace: true });
+          return;
         });
     }
 
@@ -31,7 +34,7 @@ const Movie = () => {
     return () => {
       console.log("desmontado");
     };
-  }, [id]);
+  }, [id, navigation]);
 
   if (loading) {
     return (
@@ -56,7 +59,13 @@ const Movie = () => {
       <div className="area-buttons">
         <button>Salvar</button>
         <button>
-          <a href="#">Trailer</a>
+          <a
+            target="_blank"
+            href={`https://youtube.com/results?search_query=${movie.title} Trailer`}
+            rel="noreferrer"
+          >
+            Trailer
+          </a>
         </button>
       </div>
     </div>

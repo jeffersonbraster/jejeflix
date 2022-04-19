@@ -36,6 +36,25 @@ const Movie = () => {
     };
   }, [id, navigation]);
 
+  const saveMovie = () => {
+    const list = localStorage.getItem("@JejeFlix");
+
+    let savedMovies = JSON.parse(list) || [];
+
+    const hasMovie = savedMovies.some(
+      (savedMovie) => savedMovie.id === movie.id
+    );
+
+    if (hasMovie) {
+      alert("Filme já existe em seus favoritos.");
+      return;
+    }
+
+    savedMovies.push(movie);
+    localStorage.setItem("@JejeFlix", JSON.stringify(savedMovies));
+    alert("Filme adicionado com sucesso.");
+  };
+
   if (loading) {
     return (
       <div className="movie-info">
@@ -57,7 +76,7 @@ const Movie = () => {
       <strong>Avaliação: {movie.vote_average} / 10</strong>
 
       <div className="area-buttons">
-        <button>Salvar</button>
+        <button onClick={saveMovie}>Salvar</button>
         <button>
           <a
             target="_blank"

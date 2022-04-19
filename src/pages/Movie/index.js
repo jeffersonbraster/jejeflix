@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import api from "../../services/api";
+import { toast } from "react-toastify";
 import "./style.css";
 
 const Movie = () => {
@@ -46,13 +47,13 @@ const Movie = () => {
     );
 
     if (hasMovie) {
-      alert("Filme já existe em seus favoritos.");
+      toast.warn("Filme já está na sua lista.");
       return;
     }
 
     savedMovies.push(movie);
     localStorage.setItem("@JejeFlix", JSON.stringify(savedMovies));
-    alert("Filme adicionado com sucesso.");
+    toast.success("Filme adicionado aos favoritos!");
   };
 
   if (loading) {

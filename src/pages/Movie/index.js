@@ -52,6 +52,13 @@ const Movie = () => {
       <span>{movie.overview}</span>
 
       <strong>Avaliação: {movie.vote_average} / 10</strong>
+
+      <div className="area-buttons">
+        <button>Salvar</button>
+        <button>
+          <a href="#">Trailer</a>
+        </button>
+      </div>
     </div>
   );
 };
